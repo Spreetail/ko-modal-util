@@ -1,0 +1,57 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+    <title>KO Modal Utility</title>
+    <meta name="description" content="KO Modal Utility">
+    <meta name="author" content="jaekschmitt">  
+
+    <link href="../node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+<!--[if lt IE 9]>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
+<![endif]-->
+</head>
+
+<body>    
+
+    <div id="Example00" class="container">
+        <h2>Simple Example</h2>
+
+        <div class="row">
+            <div class="col-xs-6 col-xs-offset-3">
+                <div class="well text-center">
+                    <button class="btn btn-success" data-bind="click: handleClick">Launch Modal</button>
+                </div>  
+            </div>
+        </div>
+    </div>        
+    
+    <script type="text/html" id="example-modal">
+        <h2>Hello!</h2>
+        <p>This is a sample modal using Spreetails ko-bootstrap Modal!</p>
+    </script>
+
+    <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="../node_modules/knockout/build/output/knockout-latest.debug.js"></script>
+    
+    <script src="../dist/index.js"></script>
+    <script>            
+
+        var vm = {
+            handleClick: function() {
+                ko.Modal.show({
+                    title: 'Example 00',
+                    template: 'example-modal'
+                });
+            }
+        };
+
+        ko.applyBindings(vm, document.getElementById('Example00'))
+
+    </script>
+</body>
+</html>
