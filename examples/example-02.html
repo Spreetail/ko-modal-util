@@ -20,9 +20,47 @@
     <div id="Example02" class="container">
         <h2>Advanced Modal Model Example</h2>
 
+        <p>
+            Modal's may be passed a model of its own to operate the state. There are no restrictions on this model.
+
+            <pre>
+                 var ModalVM = function () {
+                    this.itemToAdd = ko.observable("");
+                    this.allItems = ko.observableArray(["Fries", "Eggs Benedict", "Ham", "Cheese"]);
+                    this.selectedItems = ko.observableArray(["Ham"]);
+                 
+                    this.addItem = function () {
+                        if ((this.itemToAdd() != "") && (this.allItems.indexOf(this.itemToAdd()) < 0))
+                            this.allItems.push(this.itemToAdd());
+                        this.itemToAdd("");
+                    };
+                 
+                    this.removeSelected = function () {
+                        this.allItems.removeAll(this.selectedItems());
+                        this.selectedItems([]);
+                    };
+                 
+                    this.sortItems = function() {
+                        this.allItems.sort();
+                    };
+                };
+
+
+                ko.Modal.show({
+                    title: 'Example 02',
+                    template: 'example-modal',
+                    vm: new ModalVM(),
+                    actions: [{
+                        label: 'Done',
+                        onClick: ko.Modal.hide
+                    }]
+                });
+            </pre>
+        </p>
+
         <div class="row">
             <div class="col-xs-6 col-xs-offset-3">
-                <div class="well text-center">
+                <div class="text-center">
                     <button class="btn btn-success" data-bind="click: handleClick">Launch Modal</button>
                 </div>  
             </div>
@@ -90,7 +128,7 @@
                     template: 'example-modal',
                     vm: new ModalVM(),
                     actions: [{
-                        label: 'Done',                        
+                        label: 'Done',
                         onClick: ko.Modal.hide
                     }]
                 });

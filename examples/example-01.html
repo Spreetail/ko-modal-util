@@ -20,9 +20,32 @@
     <div id="Example01" class="container">
         <h2>Actions Example</h2>
 
+        <p>
+            Demonstration of adding action buttons with callbacks to modal show.
+
+            <pre>
+                ko.Modal.show({
+                    title: 'Example 01',
+                    template: 'example-modal',
+                    actions: [{
+                        label: 'Cancel',
+                        css: 'btn-danger',
+                        onClick: ko.Modal.hide
+                    }, {
+                        label: 'Save',
+                        css: 'btn-success',
+                        onClick: function() {
+                            alert('User has selected Save from the modal.');
+                            ko.Modal.hide();
+                        }
+                    }]
+                });
+            </pre>
+        </p>
+
         <div class="row">
             <div class="col-xs-6 col-xs-offset-3">
-                <div class="well text-center">
+                <div class="text-center">
                     <button class="btn btn-success" data-bind="click: handleClick">Launch Modal</button>
                 </div>  
             </div>

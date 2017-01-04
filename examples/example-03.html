@@ -20,9 +20,34 @@
     <div id="Example03" class="container">
         <h2>Segue Example</h2>
 
+        <p>
+            The Modal Controller is state aware and will allow you to show multiple. It will add the modals to a stack and traverse through them as they are closed.
+        
+            <pre>
+                var modalVM = {
+                    handleAnotherClick: function() {
+                        ko.Modal.show({
+                            title: 'Example 03 - Part II',
+                            template: 'another-example-modal',
+                            actions: [{
+                                label: 'Go Back',
+                                onClick: ko.Modal.hide
+                            }]
+                        });
+                    }
+                };
+
+                ko.Modal.show({
+                    title: 'Example 03',
+                    template: 'example-modal',
+                    vm: modalVM
+                });
+            </pre>
+        </p>
+
         <div class="row">
             <div class="col-xs-6 col-xs-offset-3">
-                <div class="well text-center">
+                <div class="text-center">
                     <button class="btn btn-success" data-bind="click: handleClick">Launch Modal</button>
                 </div>
             </div>
@@ -66,7 +91,7 @@
                 ko.Modal.show({
                     title: 'Example 03',
                     template: 'example-modal',
-                    vm: modalVM                    
+                    vm: modalVM
                 });
             },            
         };
